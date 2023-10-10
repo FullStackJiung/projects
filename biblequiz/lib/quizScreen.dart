@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'models.dart';
+import 'models.dart'; // 퀴즈 데이터 및 모델을 import합니다.
 
 class QuizScreen extends StatefulWidget {
   final Function(String) onCorrectAnswer;
@@ -12,24 +12,6 @@ class QuizScreen extends StatefulWidget {
 
 class _QuizScreenState extends State<QuizScreen> {
   int _currentQuiz = 0;
-
-  void _answerQuestion(int index, BuildContext context) {
-    if (index == quizzes[_currentQuiz].answerIndex) {
-      widget.onCorrectAnswer(quizzes[_currentQuiz].rewardPageContent);
-
-      if (_currentQuiz + 1 < quizzes.length) {
-        setState(() {
-          _currentQuiz++;
-        });
-      } else {
-        // 마지막 퀴즈를 답했을 때의 로직
-      }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('정답이 아닙니다!')),
-      );
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,5 +30,23 @@ class _QuizScreenState extends State<QuizScreen> {
         ],
       ),
     );
+  }
+
+  void _answerQuestion(int index, BuildContext context) {
+    if (index == quizzes[_currentQuiz].answerIndex) {
+      widget.onCorrectAnswer(quizzes[_currentQuiz].rewardPageContent);
+
+      if (_currentQuiz + 1 < quizzes.length) {
+        setState(() {
+          _currentQuiz++;
+        });
+      } else {
+        // 마지막 퀴즈를 답했을 때의 로직
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('정답이 아닙니다!')),
+      );
+    }
   }
 }

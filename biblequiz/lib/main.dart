@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'quizscreen.dart';
+import 'quizscreen.dart'; // quizScreen.dart 파일을 import합니다.
 
 void main() => runApp(BibleApp());
 
